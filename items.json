@@ -1,0 +1,182 @@
+{
+"kind": "youtube#searchListResponse",
+"etag": "-LOnq1SvlKtOeCZbNKwc92PfmCo",
+"nextPageToken": "CAUQAA",
+"regionCode": "RO",
+"pageInfo": {
+"totalResults": 89,
+"resultsPerPage": 5
+},
+"items": [
+{
+"kind": "youtube#searchResult",
+"etag": "19-zCeyvpyyP7uGirANmZy0fOFU",
+"id": {
+"kind": "youtube#video",
+"videoId": "BEtPCT7ZcE0"
+},
+"snippet": {
+"publishedAt": "2017-06-22T21:32:38Z",
+"channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+"title": "The Story of An Idea - Google I/O 2017",
+"description": "This is a story for anyone who has ever had an idea, big or small. What will your idea become? Subscribe to the Google Developers Channel!",
+"thumbnails": {
+"default": {
+"url": "https://i.ytimg.com/vi/BEtPCT7ZcE0/default.jpg",
+"width": 120,
+"height": 90
+},
+"medium": {
+"url": "https://i.ytimg.com/vi/BEtPCT7ZcE0/mqdefault.jpg",
+"width": 320,
+"height": 180
+},
+"high": {
+"url": "https://i.ytimg.com/vi/BEtPCT7ZcE0/hqdefault.jpg",
+"width": 480,
+"height": 360
+}
+},
+"channelTitle": "Google Developers",
+"liveBroadcastContent": "none",
+"publishTime": "2017-06-22T21:32:38Z"
+}
+},
+{
+"kind": "youtube#searchResult",
+"etag": "a0VFcchClj2SvfxI1Y6lZq2_fdg",
+"id": {
+"kind": "youtube#video",
+"videoId": "ihzZrS69i_s"
+},
+"snippet": {
+"publishedAt": "2013-05-17T16:18:26Z",
+"channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+"title": "Google I/O 2013 - A Moving Experience",
+"description": "Chet Haase, Romain Guy This talk will show various types of application animations and the code for how to achieve them. Developers should leave the ...",
+"thumbnails": {
+"default": {
+"url": "https://i.ytimg.com/vi/ihzZrS69i_s/default.jpg",
+"width": 120,
+"height": 90
+},
+"medium": {
+"url": "https://i.ytimg.com/vi/ihzZrS69i_s/mqdefault.jpg",
+"width": 320,
+"height": 180
+},
+"high": {
+"url": "https://i.ytimg.com/vi/ihzZrS69i_s/hqdefault.jpg",
+"width": 480,
+"height": 360
+}
+},
+"channelTitle": "Google Developers",
+"liveBroadcastContent": "none",
+"publishTime": "2013-05-17T16:18:26Z"
+}
+},
+{
+"kind": "youtube#searchResult",
+"etag": "9afVum26D3zX0SkfK892L9z5P_E",
+"id": {
+"kind": "youtube#video",
+"videoId": "JYmTBT7DvSM"
+},
+"snippet": {
+"publishedAt": "2019-04-29T16:19:25Z",
+"channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+"title": "Account Linking for Actions on Google",
+"description": "You can use account linking to connect your users' Google accounts with user accounts in your authentication system. This allows you to create an enriching ...",
+"thumbnails": {
+"default": {
+"url": "https://i.ytimg.com/vi/JYmTBT7DvSM/default.jpg",
+"width": 120,
+"height": 90
+},
+"medium": {
+"url": "https://i.ytimg.com/vi/JYmTBT7DvSM/mqdefault.jpg",
+"width": 320,
+"height": 180
+},
+"high": {
+"url": "https://i.ytimg.com/vi/JYmTBT7DvSM/hqdefault.jpg",
+"width": 480,
+"height": 360
+}
+},
+"channelTitle": "Google Developers",
+"liveBroadcastContent": "none",
+"publishTime": "2019-04-29T16:19:25Z"
+}
+},
+{
+"kind": "youtube#searchResult",
+"etag": "Z55Nj5lt6r1b0DBaSoO_L5edlSs",
+"id": {
+"kind": "youtube#video",
+"videoId": "BdmMnCKmKsA"
+},
+"snippet": {
+"publishedAt": "2017-11-17T23:30:45Z",
+"channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+"title": "The Developer Show (TL;DR 089)",
+"description": "The Developer Show is where you can stay up to date on all the latest Google Developer news, straight from the experts. Have a question? Use #AskDevShow ...",
+"thumbnails": {
+"default": {
+"url": "https://i.ytimg.com/vi/BdmMnCKmKsA/default.jpg",
+"width": 120,
+"height": 90
+},
+"medium": {
+"url": "https://i.ytimg.com/vi/BdmMnCKmKsA/mqdefault.jpg",
+"width": 320,
+"height": 180
+},
+"high": {
+"url": "https://i.ytimg.com/vi/BdmMnCKmKsA/hqdefault.jpg",
+"width": 480,
+"height": 360
+}
+},
+"channelTitle": "Google Developers",
+"liveBroadcastContent": "none",
+"publishTime": "2017-11-17T23:30:45Z"
+}
+},
+{
+"kind": "youtube#searchResult",
+"etag": "muzEmiA219NNCX7CIf-WtKpzeN0",
+"id": {
+"kind": "youtube#video",
+"videoId": "8lJewIWVI5s"
+},
+"snippet": {
+"publishedAt": "2012-07-02T15:14:54Z",
+"channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+"title": "Google I/O 2012 - Storing Data in Google Apps Script",
+"description": "Drew Csillag This session covers the different ways in which developers can store data when using Google Script. We'll break things down by use case, and ...",
+"thumbnails": {
+"default": {
+"url": "https://i.ytimg.com/vi/8lJewIWVI5s/default.jpg",
+"width": 120,
+"height": 90
+},
+"medium": {
+"url": "https://i.ytimg.com/vi/8lJewIWVI5s/mqdefault.jpg",
+"width": 320,
+"height": 180
+},
+"high": {
+"url": "https://i.ytimg.com/vi/8lJewIWVI5s/hqdefault.jpg",
+"width": 480,
+"height": 360
+}
+},
+"channelTitle": "Google Developers",
+"liveBroadcastContent": "none",
+"publishTime": "2012-07-02T15:14:54Z"
+}
+}
+]
+}
