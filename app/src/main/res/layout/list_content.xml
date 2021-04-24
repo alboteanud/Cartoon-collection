@@ -1,46 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="320dp"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp">
 
     <ImageView
-        android:layout_width="120dp"
-        android:layout_height="90dp"
+        android:layout_width="320dp"
+        android:layout_height="180dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@color/purple_500"
-        android:id="@+id/thumbImageView"/>
+        android:id="@+id/thumbImageView"
+        android:adjustViewBounds="true"/>
 
     <TextView
         android:id="@+id/titleText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/text_margin"
-        android:layout_marginEnd="@dimen/text_margin"
+        android:layout_margin="8dp"
         android:textAppearance="?attr/textAppearanceListItem"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/thumbImageView"
-        app:layout_constraintTop_toTopOf="@+id/thumbImageView"
-        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintEnd_toEndOf="@id/thumbImageView"
+        app:layout_constraintStart_toStartOf="@id/thumbImageView"
+        app:layout_constraintTop_toBottomOf="@+id/thumbImageView"
         tools:text="Title" />
 
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/text_margin"
-        android:layout_marginTop="@dimen/text_margin"
-        android:layout_marginEnd="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintStart_toEndOf="@id/thumbImageView"
-        app:layout_constraintTop_toBottomOf="@+id/titleText"
-        tools:text="Description" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

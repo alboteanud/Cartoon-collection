@@ -5,7 +5,6 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.*
 import com.craiovadata.android.mytoons.model.Item
-import com.craiovadata.android.mytoons.model.ResponseParser
 import timber.log.Timber
 
 
@@ -14,29 +13,35 @@ class NetworkDataSource constructor(private val queue: RequestQueue) {
     val downloadedItems = MutableLiveData<List<Item>>()
 
     fun downloadItems() {
-
-        val url =
-            "https://gist.githubusercontent.com/alboteanud/2ca7929f4c90f74dcd84e1db2a52a5b6/raw/toons_items.json"
-
-        val jsonObjectRequest = JsonObjectRequest(
+        val url = "https://gist.githubusercontent.com/alboteanud/2ca7929f4c90f74dcd84e1db2a52a5b6/raw/toons_items.json"
+        val jsonObjectRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
             { response ->
                 Timber.d(response.toString())
                 val items = ResponseParser.parseResponse(response)
-//                downloadedItems.value = items
-//                downloadedItems.postValue(items)
                 downloadedItems.apply {
                     value = items
-//                 values =   ResponseParser.ITEMS
                     Timber.d("items: " + items.size)
                 }
-
-            },
-            { error ->
+            }, {
                 // TODO: Handle error
-                Timber.e(error.message)
             }
         )
+
+        queue.add(jsonObjectRequest)
+    }
+
+
+    // use this to get a simplified response to post to the Gist
+  fun downloadItemsToSimplify() {
+        val url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyAxhu8irpahSxKIlanX1f3GFuad9zPrnU4&q=tom_jerry&type=video&safeSearch=strict&maxResults=50&part=snippet"
+        val jsonObjectRequest =  JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                Timber.d(response.toString())
+                ResponseParser.parseResponse_toSimplify(response)
+            }
+        ) {}
 
         queue.add(jsonObjectRequest)
     }

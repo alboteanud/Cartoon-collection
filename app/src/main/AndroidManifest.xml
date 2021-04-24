@@ -14,7 +14,8 @@
         <activity
             android:name=".ListActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MyToons.NoActionBar">
+            android:theme="@style/Theme.MyToons.NoActionBar"
+            android:screenOrientation="sensorLandscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +26,8 @@
             android:name=".PlayerActivity"
             android:label="@string/title_item_detail"
             android:parentActivityName=".ListActivity"
-            android:theme="@style/Theme.MyToons.NoActionBar">
+            android:theme="@style/Theme.MyToons.NoActionBar"
+            android:screenOrientation="sensorLandscape">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.craiovadata.android.mytoons.ListActivity" />
