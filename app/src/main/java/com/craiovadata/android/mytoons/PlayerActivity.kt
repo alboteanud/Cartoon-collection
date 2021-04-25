@@ -6,6 +6,7 @@ import android.support.v4.media.session.PlaybackStateCompat
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.craiovadata.android.mytoons.data.MyYoutubeExtractor
 import com.google.android.exoplayer2.*
@@ -23,7 +24,10 @@ class PlayerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
         val videoId = intent.getStringExtra(ARG_ITEM_ID)
-            ?: return finish()
+        if (videoId== null){
+            Toast.makeText(this, getString(R.string.error_invalid_video_id), Toast.LENGTH_LONG).show()
+            return finish()
+        }
         playerView = findViewById(R.id.video_view)
         findViewById<ImageButton>(R.id.exo_close).setOnClickListener {
             pausePlayer()
@@ -36,8 +40,14 @@ class PlayerActivity : AppCompatActivity() {
         Timber.d(videoUrl)
         // extract & play
         MyYoutubeExtractor(this) { downloadUrl ->
-            initializePlayer(downloadUrl)
-            startPlayer()
+            if (downloadUrl!=null){
+                initializePlayer(downloadUrl)
+                startPlayer()
+            } else {
+                Toast.makeText(this, getString(R.string.error_cannot_play), Toast.LENGTH_LONG).show()
+                finish()
+            }
+
         }.extract(videoUrl, true, true)
     }
 
@@ -58,6 +68,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun initializePlayer(downloadUrl: String) {
+
         val trackSelector = DefaultTrackSelector(this)
         trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd())
         player = SimpleExoPlayer.Builder(this)

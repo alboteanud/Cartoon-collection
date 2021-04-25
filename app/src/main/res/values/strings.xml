@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">T&amp;J toons</string>
     <string name="youtube_url">https://www.youtube.com/watch?v=%s</string>
+    <string name="error_cannot_play">Error downloading video source</string>
+    <string name="error_invalid_video_id">Error - invalid video id argument</string>
 </resources>

@@ -34,7 +34,7 @@ class ListActivity : AppCompatActivity() {
 
         myViewModel.items.observe(this, { items ->
             loadingIndicator.visibility = View.GONE
-            adapter.values = items.shuffled()
+            adapter.values = items
             adapter.notifyDataSetChanged()
         })
 
