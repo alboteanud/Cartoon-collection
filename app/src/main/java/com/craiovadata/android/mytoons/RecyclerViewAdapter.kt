@@ -24,7 +24,7 @@ class RecyclerViewAdapter(private val parentActivity: ListActivity) :
                 putExtra(PlayerActivity.ARG_ITEM_ID, item.videoId)
             }
             v.context.startActivity(intent)
-            Timber.d("clicked on: %s %s", item.thumbUrl, item.videoId)
+            Timber.d("clicked on: %s", item.getThumbnailUrl())
         }
     }
 
@@ -37,9 +37,12 @@ class RecyclerViewAdapter(private val parentActivity: ListActivity) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
         holder.titleTextView.text = item.title
+        val placeholder = parentActivity.getDrawable(R.drawable.thumbnail_placeholder)
         Glide.with(parentActivity)
-            .load(item.thumbUrl)
+            .load(item.getThumbnailUrl())
+            .placeholder(placeholder)
             .into(holder.imageView)
+
 
         with(holder.imageView) {
             tag = item

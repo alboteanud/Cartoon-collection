@@ -20,10 +20,6 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        toolbar.title = title
-
         if (BuildConfig.DEBUG)
             Timber.plant(DebugTree())
 

@@ -6,15 +6,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_marginEnd="8dp"
-    android:layout_marginStart="8dp">
+    android:layout_marginStart="0dp">
 
     <ImageView
         android:layout_width="320dp"
         android:layout_height="180dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@color/purple_500"
         android:id="@+id/thumbImageView"
+        android:src="@drawable/thumbnail_placeholder"
         android:adjustViewBounds="true"/>
 
     <TextView

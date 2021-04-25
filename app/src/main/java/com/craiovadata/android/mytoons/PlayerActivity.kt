@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.media.session.PlaybackStateCompat
 import android.view.View
-import android.view.Window
 import android.view.WindowManager
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.craiovadata.android.mytoons.data.MyYoutubeExtractor
 import com.google.android.exoplayer2.*
@@ -15,7 +15,7 @@ import timber.log.Timber
 
 
 class PlayerActivity : AppCompatActivity() {
-    private var playbackStateListener: PlaybackStateListener? = null
+
     private var playerView: PlayerView? = null
     private var player: SimpleExoPlayer? = null
 
@@ -25,6 +25,11 @@ class PlayerActivity : AppCompatActivity() {
         val videoId = intent.getStringExtra(ARG_ITEM_ID)
             ?: return finish()
         playerView = findViewById(R.id.video_view)
+        findViewById<ImageButton>(R.id.exo_close).setOnClickListener {
+            pausePlayer()
+            releasePlayer()
+            finish()
+        }
 
         hideSystemUi()
         val videoUrl = getString(R.string.youtube_url, videoId)
@@ -32,8 +37,7 @@ class PlayerActivity : AppCompatActivity() {
         // extract & play
         MyYoutubeExtractor(this) { downloadUrl ->
             initializePlayer(downloadUrl)
-            playbackStateListener = PlaybackStateListener(player, window)
-            play()
+            startPlayer()
         }.extract(videoUrl, true, true)
     }
 
@@ -67,17 +71,17 @@ class PlayerActivity : AppCompatActivity() {
         playerView!!.player = player
     }
 
-    private fun play() {
+    private fun startPlayer() {
         player?.apply {
             playWhenReady = true
-            addListener(playbackStateListener!!)
+            addListener(stateListener)
             window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         }
     }
 
     private fun releasePlayer() {
         player?.apply {
-            removeListener(playbackStateListener!!)
+            removeListener(stateListener)
             release()
             player = null
         }
@@ -100,42 +104,32 @@ class PlayerActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
     }
 
-    private class PlaybackStateListener(val player: SimpleExoPlayer?, val window: Window) :
-        Player.EventListener {
+    private val stateListener = object : Player.EventListener {
+        override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+            if (playbackState == PlaybackStateCompat.STATE_PLAYING && playWhenReady) {
+                window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+            } else{
+                window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+            }
+        }
+
         override fun onPlayWhenReadyChanged(playWhenReady: Boolean, reason: Int) {
             super.onPlayWhenReadyChanged(playWhenReady, reason)
             Timber.d("play when ready changed:  %s", playWhenReady)
             if (playWhenReady) {
                 window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-            }else{
+            } else {
                 window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             }
-        }
-
-        override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
-            if (playbackState == PlaybackStateCompat.STATE_PLAYING) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-                Timber.d("player playing")
-            } else{
-                Timber.d("player stopped")
-                window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
-            }
-            val stateString: String = when (playbackState) {
-                ExoPlayer.STATE_IDLE -> "ExoPlayer.STATE_IDLE      -"
-                ExoPlayer.STATE_BUFFERING -> "ExoPlayer.STATE_BUFFERING -"
-                ExoPlayer.STATE_READY -> "ExoPlayer.STATE_READY     -"
-                ExoPlayer.STATE_ENDED -> "ExoPlayer.STATE_ENDED     -"
-                else -> "UNKNOWN_STATE             -"
-            }
-            Timber.d("changed state to $stateString")
         }
 
         override fun onPlayerError(error: ExoPlaybackException) {
             super.onPlayerError(error)
             player?.stop()
         }
+
     }
+
 
     companion object {
         const val ARG_ITEM_ID = "video_id"

@@ -24,7 +24,6 @@
         </activity>
         <activity
             android:name=".PlayerActivity"
-            android:label="@string/title_item_detail"
             android:parentActivityName=".ListActivity"
             android:theme="@style/Theme.MyToons.NoActionBar"
             android:screenOrientation="sensorLandscape">

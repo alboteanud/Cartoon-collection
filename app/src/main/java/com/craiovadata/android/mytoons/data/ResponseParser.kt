@@ -1,5 +1,7 @@
 package com.craiovadata.android.mytoons.data
 
+import android.util.Log
+import com.craiovadata.android.mytoons.BuildConfig
 import com.craiovadata.android.mytoons.model.Item
 import org.json.JSONArray
 import org.json.JSONException
@@ -8,26 +10,38 @@ import timber.log.Timber
 
 
 object ResponseParser {
+    private val VIDEO_ID_KEY = "id"
+    private val TITLE_KEY = "t"
 
     fun parseResponse(responseArray: JSONArray?): List<Item> {
         val items = mutableListOf<Item>()
         if (responseArray == null) return items
+        val newJsonArray = JSONArray()
         for (i in 0 until responseArray.length()) {
             try {
                 val jsonObject = responseArray.getJSONObject(i)
                 val item = Item()
-                item.videoId = jsonObject.getString("id")
-                item.title = jsonObject.getString("title")
-                item.thumbUrl = jsonObject.getString("url")
+                item.videoId = jsonObject.getString(VIDEO_ID_KEY)
+                item.title = jsonObject.getString(TITLE_KEY)
                 items.add(item)
-            } catch (e: JSONException){
+
+                    // editing json for the GIST
+                    if (item.title!!.length > 70)
+                        item.title = item.title!!.substring(0, 70) + "..."
+                    val jsonItem = JSONObject()
+                    jsonItem.put(TITLE_KEY, item.title)
+                    jsonItem.put(VIDEO_ID_KEY, item.videoId)
+                    newJsonArray.put(jsonItem)
+            } catch (e: JSONException) {
                 e.printStackTrace()
             }
         }
+        Timber.v(newJsonArray.toString())
         return items
     }
 
-    fun parseResponse_toSimplify(response: JSONObject?): List<Item> {
+    // used to print the simple version of the Youtube API response that we will publish to our Gist
+    fun parseResponseFromYoutubeAPI(response: JSONObject?): List<Item> {
         val items = mutableListOf<Item>()
         val jsonArray = response?.getJSONArray("items") ?: return items
 
@@ -40,17 +54,16 @@ object ResponseParser {
                 item.videoId = jsonObject.getJSONObject("id").getString("videoId")
                 val snippet = jsonObject.getJSONObject("snippet")
                 item.title = snippet.getString("title")
-                item.thumbUrl = snippet.getJSONObject("thumbnails").getJSONObject("medium").getString("url")
-
+//                item.imgUrl = snippet.getJSONObject("thumbnails").getJSONObject("medium").getString("url")
                 items.add(item)
 
                 val jsonItem = JSONObject()
-                jsonItem.put("id", jsonObject.getJSONObject("id").getString("videoId"))
-                jsonItem.put("title", snippet.getString("title"))
-                jsonItem.put("url", snippet.getJSONObject("thumbnails").getJSONObject("medium").getString("url"))
+                jsonItem.put(VIDEO_ID_KEY, item.videoId)
+                jsonItem.put(TITLE_KEY, item.title)
+//                jsonItem.put(IMAGE_URL_KEY, item.imgUrl)
                 newJsonArray.put(jsonItem)
 
-            } catch (e: JSONException){
+            } catch (e: JSONException) {
                 e.printStackTrace()
             }
 
