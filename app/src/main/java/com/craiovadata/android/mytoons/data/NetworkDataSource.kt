@@ -27,7 +27,7 @@ class NetworkDataSource constructor(private val queue: RequestQueue) {
                 // TODO: Handle error
             }
             // use this to get a simplified response to post to the Gist
-//        val url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyAxhu8irpahSxKIlanX1f3GFuad9zPrnU4&q=tom_jerry&type=video&safeSearch=strict&maxResults=50&part=snippet"
+//        val url = "https://www.googleapis.com/youtube/v3/search?key=???&q=tom_jerry&type=video&safeSearch=strict&maxResults=50&part=snippet"
 //        val jsonObjectRequest =  JsonObjectRequest(
 //        val items = ResponseParser.parseResponseFromYoutubeAPI(response)
         )
